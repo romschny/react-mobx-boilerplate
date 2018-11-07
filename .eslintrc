@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "legacyDecorators": true
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    "react/destructuring-assignment": false,
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": [
+          "^\\$"
+        ]
+      }
+    ]
+  }
+}
