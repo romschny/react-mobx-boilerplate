@@ -14,14 +14,9 @@
     "sourceType": "module"
   },
   "rules": {
-    "react/destructuring-assignment": false,
-    "import/no-unresolved": [
-      2,
-      {
-        "ignore": [
-          "^\\$"
-        ]
-      }
-    ]
+    "react/destructuring-assignment": false
+  },
+  "settings": {
+    "import/resolver": "webpack"
   }
 }

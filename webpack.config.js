@@ -8,11 +8,11 @@ module.exports = (env) => {
   const config = {
     mode: env === 'production' ? 'production' : 'development',
     entry: {
-      app: './src/index.jsx',
+      app: './src/app.jsx',
     },
     output: {
       path: path.resolve(__dirname, './dist'),
-      filename: '[name].js',
+      filename: '[name].[hash.]js',
     },
     devtool: env === 'production' ? 'source-map' : 'inline-source-map',
     module: {
@@ -21,6 +21,10 @@ module.exports = (env) => {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           loaders: ['babel-loader'],
+        },
+        {
+          test: /\.css?$/,
+          loaders: ['style-loader', 'css-loader'],
         },
         {
           test: /\.(gif|png|jpe?g|svg|webp)$/i,
