@@ -12,7 +12,7 @@ module.exports = (env) => {
     },
     output: {
       path: path.resolve(__dirname, './dist'),
-      filename: '[name].[hash.]js',
+      filename: '[name].[hash].js',
     },
     devtool: env === 'production' ? 'source-map' : 'inline-source-map',
     module: {
@@ -80,6 +80,7 @@ module.exports = (env) => {
       noInfo: false,
       port: 8080,
       host: 'localhost',
+      disableHostCheck: true,
     },
     optimization: {
       splitChunks: {
