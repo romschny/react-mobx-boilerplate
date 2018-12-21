@@ -1,11 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Global, css } from '@emotion/core';
+import styled from '@emotion/styled';
 import { observer } from 'mobx-react';
-import styled, { css } from 'react-emotion';
 import { observable } from 'mobx';
 
 import store from '$store';
 import Button from '$components/Button';
+
+const globalStyles = css`
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+`;
 
 const centered = css`
   display: flex;
@@ -50,10 +63,12 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Header className={centered}>
+        <Global styles={globalStyles} />
+
+        <Header css={centered}>
           <h1>Hello!</h1>
         </Header>
-        <Main className={centered}>
+        <Main css={centered}>
           <p>React + Mobx Boilerplate</p>
           <Button
             onClick={() => this.addNumber()}
@@ -69,7 +84,7 @@ class App extends React.Component {
             {JSON.stringify(store.getEvenNumbers, null, 2)}
           </pre>
         </Main>
-        <Footer className={centered}>
+        <Footer css={centered}>
           <small>(c) Roman Kollatschny - 2018</small>
         </Footer>
       </>

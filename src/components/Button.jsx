@@ -1,10 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'react-emotion';
+import { css } from '@emotion/core';
+
+const ButtonStyles = css`
+  border: none;
+  margin: 20px;
+  padding: 20px 40px;
+  background: #e74c3c;
+  color: #fff;
+`;
 
 const Button = ({ children, ...otherProps }) => (
   <button
     type="button"
+    css={ButtonStyles}
     {...otherProps}
   >
     {children}
@@ -19,10 +28,4 @@ Button.defaultProps = {
   children: 'Button',
 };
 
-export default styled(Button)`
-  border: none;
-  margin: 20px;
-  padding: 20px 40px;
-  background: #e74c3c;
-  color: #fff;
-`;
+export default Button;

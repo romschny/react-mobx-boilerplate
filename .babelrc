@@ -14,7 +14,6 @@
     ],
     "@babel/plugin-transform-object-assign",
     "@babel/plugin-proposal-object-rest-spread",
-    "emotion"
   ],
   "presets": [
     "@babel/preset-react",
@@ -25,6 +24,7 @@
           "browsers": "last 1 Firefox versions"
         }
       }
-    ]
+    ],
+    "@emotion/babel-preset-css-prop"
   ]
 }
