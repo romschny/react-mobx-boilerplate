@@ -73,13 +73,14 @@ class App extends React.Component {
           <Button
             onClick={() => this.addNumber()}
           >
-            Add numbers
+            Create random number
           </Button>
-          <p>{`Number added: ${this.number}`}</p>
+          <p>{`Number created: ${this.number}`}</p>
+          <small>{`The created number is ${this.number % 2 === 0 ? 'even' : 'odd'}`}</small>
 
           <hr />
 
-          <p>Even numbers from store</p>
+          <p>Cretead even numbers from store</p>
           <pre>
             {JSON.stringify(store.getEvenNumbers, null, 2)}
           </pre>
