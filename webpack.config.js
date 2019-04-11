@@ -1,10 +1,9 @@
 /* eslint-disable */
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 
-module.exports = (_, {mode}) => {
+module.exports = (_, { mode }) => {
   const config = {
     mode,
     entry: {
@@ -57,11 +56,19 @@ module.exports = (_, {mode}) => {
     resolve: {
       extensions: ['.js', '.jsx'],
       alias: {
+        mobx: __dirname + '/node_modules/mobx/lib/mobx.es6.js',
         '$components': path.resolve(__dirname, 'src/components/'),
         '$utils': path.resolve(__dirname, 'src/utils/'),
         '$store': path.resolve(__dirname, 'src/store.js'),
       },
     },
+    plugins: [
+      new CleanPlugin(['./dist'], { verbose: false }),
+      new HtmlWebpackPlugin({
+        title: 'react-mobx-boilerplate',
+        template: path.resolve(__dirname, './index.html'),
+      }),
+    ],
   };
 
   if(mode === 'development') {
@@ -86,15 +93,6 @@ module.exports = (_, {mode}) => {
         },
       },
     };
-
-    config.plugins = [
-      new CleanPlugin(['./dist'], { verbose: false }),
-      new HtmlWebpackPlugin({
-        title: 'react-mobx-boilerplate',
-        template: path.resolve(__dirname, './index.html'),
-        chunks: ['vendors', 'app'],
-      }),
-    ];
   }
 
   return config;

@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack --display-error-details --progress --colors --mode=production",
-    "lint": "eslint --ext .js,.jsx --ignore-path .gitignore .",
-    "lint:fix": "eslint --fix --ext .js,.jsx --ignore-path .gitignore .",
+    "lint": "eslint ./src --ext .js,.jsx",
+    "lint:fix": "eslint ./src --fix --ext .js,.jsx",
     "precommit": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -44,7 +44,7 @@
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-import-resolver-webpack": "^0.10.1",
+    "eslint-import-resolver-webpack": "^0.11.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
