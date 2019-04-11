@@ -1,6 +1,6 @@
 {
   "name": "react-mobx-boilerplate",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "boilerplate for a react + mobx application",
   "main": "./src/app.jsx",
   "scripts": {
