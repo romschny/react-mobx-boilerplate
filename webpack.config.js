@@ -4,9 +4,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 
-module.exports = (env) => {
+module.exports = (_, {mode}) => {
   const config = {
-    mode: env === 'production' ? 'production' : 'development',
+    mode,
     entry: {
       app: './src/app.jsx',
     },
@@ -14,7 +14,7 @@ module.exports = (env) => {
       path: path.resolve(__dirname, './dist'),
       filename: '[name].[hash].js',
     },
-    devtool: env === 'production' ? 'source-map' : 'inline-source-map',
+    devtool: mode === 'production' ? 'source-map' : 'inline-source-map',
     module: {
       rules: [
         {
@@ -32,7 +32,7 @@ module.exports = (env) => {
             'file-loader',
             {
               loader: 'image-webpack-loader',
-              options: env === 'prod'
+              options: mode === 'production'
                 ? {
                   mozjpeg: {
                     progressive: true,
@@ -62,27 +62,20 @@ module.exports = (env) => {
         '$store': path.resolve(__dirname, 'src/store.js'),
       },
     },
-    plugins: [
-      new CleanPlugin(['./dist'], { verbose: false }),
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify(env),
-        },
-      }),
-      new HtmlWebpackPlugin({
-        title: 'react-mobx-boilerplate',
-        template: path.resolve(__dirname, './index.html'),
-        chunks: ['vendors', 'app'],
-      }),
-    ],
-    devServer: {
+  };
+
+  if(mode === 'development') {
+    config.devServer = {
       historyApiFallback: true,
       noInfo: false,
       port: 8080,
       host: 'localhost',
       disableHostCheck: true,
-    },
-    optimization: {
+    };
+  }
+
+  if(mode === 'production') {
+    config.optimization = {
       splitChunks: {
         cacheGroups: {
           commons: {
@@ -92,8 +85,17 @@ module.exports = (env) => {
           },
         },
       },
-    },
-  };
+    };
+
+    config.plugins = [
+      new CleanPlugin(['./dist'], { verbose: false }),
+      new HtmlWebpackPlugin({
+        title: 'react-mobx-boilerplate',
+        template: path.resolve(__dirname, './index.html'),
+        chunks: ['vendors', 'app'],
+      }),
+    ];
+  }
 
   return config;
 };

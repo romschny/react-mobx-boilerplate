@@ -5,7 +5,7 @@
   "main": "./src/app.jsx",
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "webpack --display-error-details --progress --colors --mode=production --env.NODE_ENV=production",
+    "build": "webpack --display-error-details --progress --colors --mode=production",
     "lint": "eslint --ext .js,.jsx --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .js,.jsx --ignore-path .gitignore .",
     "precommit": "lint-staged",
