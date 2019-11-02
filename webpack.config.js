@@ -1,7 +1,7 @@
 /* eslint-disable */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (_, { mode }) => {
   const config = {
@@ -22,10 +22,6 @@ module.exports = (_, { mode }) => {
           loaders: ['babel-loader'],
         },
         {
-          test: /\.css?$/,
-          loaders: ['style-loader', 'css-loader'],
-        },
-        {
           test: /\.(gif|png|jpe?g|svg|webp)$/i,
           use: [
             'file-loader',
@@ -35,13 +31,13 @@ module.exports = (_, { mode }) => {
                 ? {
                   mozjpeg: {
                     progressive: true,
-                    quality: 75,
+                    quality: 65,
                   },
                   optipng: {
                     enabled: false,
                   },
                   pngquant: {
-                    quality: '75-90',
+                    quality: [0.65, 0.9],
                     speed: 4,
                   },
                 }
@@ -63,7 +59,7 @@ module.exports = (_, { mode }) => {
       },
     },
     plugins: [
-      new CleanPlugin(['./dist'], { verbose: false }),
+      new CleanWebpackPlugin({ verbose: false }),
       new HtmlWebpackPlugin({
         title: 'react-mobx-boilerplate',
         template: path.resolve(__dirname, './index.html'),

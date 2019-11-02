@@ -14,7 +14,8 @@
     "sourceType": "module"
   },
   "rules": {
-    "react/destructuring-assignment": false
+    "react/destructuring-assignment": [0],
+    "react/jsx-props-no-spreading": [0]
   },
   "settings": {
     "import/resolver": "webpack"

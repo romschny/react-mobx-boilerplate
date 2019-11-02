@@ -7,11 +7,11 @@ import {
 
 class Store {
   // define state values
-  @observable numbers = [...Array(10).keys()].map(i => i);
+  @observable numbers = [...Array(10).keys()].map((i) => i);
 
   // define computed values
   @computed get getEvenNumbers() {
-    return this.numbers.filter(i => i % 2 !== 1);
+    return this.numbers.filter((i) => i % 2 !== 1);
   }
 
   // define actions
